@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Gmu5Pnqq2oA=",
+  "dgSpecHash": "K7qJJd55csE=",
   "success": true,
   "projectFilePath": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\FieldControl.Minio.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\gulye\\.nuget\\packages\\awssdk.core\\4.0.4\\awssdk.core.4.0.4.nupkg.sha512",
+    "C:\\Users\\gulye\\.nuget\\packages\\awssdk.s3\\4.0.22.1\\awssdk.s3.4.0.22.1.nupkg.sha512",
     "C:\\Users\\gulye\\.nuget\\packages\\efcore.namingconventions\\10.0.1\\efcore.namingconventions.10.0.1.nupkg.sha512",
     "C:\\Users\\gulye\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\gulye\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.7\\microsoft.aspnetcore.openapi.10.0.7.nupkg.sha512",

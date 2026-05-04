@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FieldControl.Minio")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+151a7995ca4f9506af7dc03cb22a2b297c593385")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d4750b34f6c275831439456eacfa2e56911eef9e")]
 [assembly: System.Reflection.AssemblyProductAttribute("FieldControl.Minio")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FieldControl.Minio")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
