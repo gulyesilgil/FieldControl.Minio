@@ -15,7 +15,6 @@ namespace FieldControl.Minio.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Daha önce yazdığın Configuration dosyalarını (sütun uzunlukları vb.) otomatik bağlar
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
         }

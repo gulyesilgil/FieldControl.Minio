@@ -11,24 +11,11 @@
       "RelativeMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|solutionrelative:fieldcontrol.minio\\interfaces\\ifilestorageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|c:\\users\\gulye\\desktop\\2026 internship\\fieldcontrol.minio\\fieldcontrol.minio\\enums\\inspectionstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|solutionrelative:fieldcontrol.minio\\enums\\inspectionstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|c:\\users\\gulye\\desktop\\2026 internship\\fieldcontrol.minio\\fieldcontrol.minio\\entities\\inspection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|solutionrelative:fieldcontrol.minio\\entities\\inspection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|c:\\users\\gulye\\desktop\\2026 internship\\fieldcontrol.minio\\fieldcontrol.minio\\configurations\\inspectionfileconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|solutionrelative:fieldcontrol.minio\\configurations\\inspectionfileconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|c:\\users\\gulye\\desktop\\2026 internship\\fieldcontrol.minio\\fieldcontrol.minio\\entities\\inspectionfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|solutionrelative:fieldcontrol.minio\\entities\\inspectionfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|c:\\users\\gulye\\desktop\\2026 internship\\fieldcontrol.minio\\fieldcontrol.minio\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|solutionrelative:fieldcontrol.minio\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|c:\\users\\gulye\\desktop\\2026 internship\\fieldcontrol.minio\\fieldcontrol.minio\\configurations\\inspectionconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|solutionrelative:fieldcontrol.minio\\configurations\\inspectionconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl\\FieldControl\\Controllers\\InspectionController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|c:\\users\\gulye\\desktop\\2026 internship\\fieldcontrol.minio\\fieldcontrol.minio\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -39,8 +26,36 @@
       "RelativeMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|solutionrelative:fieldcontrol.minio\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|c:\\users\\gulye\\desktop\\2026 internship\\fieldcontrol.minio\\fieldcontrol.minio\\entities\\inspection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|solutionrelative:fieldcontrol.minio\\entities\\inspection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|c:\\users\\gulye\\desktop\\2026 internship\\fieldcontrol.minio\\fieldcontrol.minio\\migrations\\appdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|solutionrelative:fieldcontrol.minio\\migrations\\appdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|c:\\users\\gulye\\desktop\\2026 internship\\fieldcontrol.minio\\fieldcontrol.minio\\migrations\\20260504111427_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|solutionrelative:fieldcontrol.minio\\migrations\\20260504111427_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|c:\\users\\gulye\\desktop\\2026 internship\\fieldcontrol.minio\\fieldcontrol.minio\\enums\\inspectionstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|solutionrelative:fieldcontrol.minio\\enums\\inspectionstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|c:\\users\\gulye\\desktop\\2026 internship\\fieldcontrol.minio\\fieldcontrol.minio\\entities\\inspectionfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|solutionrelative:fieldcontrol.minio\\entities\\inspectionfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|c:\\users\\gulye\\desktop\\2026 internship\\fieldcontrol.minio\\fieldcontrol.minio\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|solutionrelative:fieldcontrol.minio\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|c:\\users\\gulye\\desktop\\2026 internship\\fieldcontrol.minio\\fieldcontrol.minio\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|solutionrelative:fieldcontrol.minio\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|c:\\users\\gulye\\desktop\\2026 internship\\fieldcontrol.minio\\fieldcontrol.minio\\configurations\\inspectionfileconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|solutionrelative:fieldcontrol.minio\\configurations\\inspectionfileconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|c:\\users\\gulye\\desktop\\2026 internship\\fieldcontrol.minio\\fieldcontrol.minio\\configurations\\inspectionconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|solutionrelative:fieldcontrol.minio\\configurations\\inspectionconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C1A4B08C-AAB8-8442-9F1C-A54CA98EE78B}|FieldControl.Minio\\FieldControl.Minio.csproj|c:\\users\\gulye\\desktop\\2026 internship\\fieldcontrol.minio\\fieldcontrol.minio\\fieldcontrol.minio.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -82,14 +97,49 @@
               "RelativeDocumentMoniker": "FieldControl.Minio\\Services\\MinioFileStorageService.cs",
               "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Services\\MinioFileStorageService.cs",
               "RelativeToolTip": "FieldControl.Minio\\Services\\MinioFileStorageService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAYwCQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-04T12:39:04.253Z",
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "InspectionController.cs",
+              "DocumentMoniker": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl\\FieldControl\\Controllers\\InspectionController.cs",
+              "RelativeDocumentMoniker": "..\\FieldControl\\FieldControl\\Controllers\\InspectionController.cs",
+              "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl\\FieldControl\\Controllers\\InspectionController.cs",
+              "RelativeToolTip": "..\\FieldControl\\FieldControl\\Controllers\\InspectionController.cs",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T12:51:11.852Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "WeatherForecast.cs",
+              "DocumentMoniker": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\WeatherForecast.cs",
+              "RelativeDocumentMoniker": "FieldControl.Minio\\WeatherForecast.cs",
+              "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\WeatherForecast.cs",
+              "RelativeToolTip": "FieldControl.Minio\\WeatherForecast.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T09:00:38.011Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Inspection.cs",
+              "DocumentMoniker": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Entities\\Inspection.cs",
+              "RelativeDocumentMoniker": "FieldControl.Minio\\Entities\\Inspection.cs",
+              "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Entities\\Inspection.cs",
+              "RelativeToolTip": "FieldControl.Minio\\Entities\\Inspection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T06:56:51.02Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -99,23 +149,155 @@
               "RelativeDocumentMoniker": "FieldControl.Minio\\Interfaces\\IFileStorageService.cs",
               "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Interfaces\\IFileStorageService.cs",
               "RelativeToolTip": "FieldControl.Minio\\Interfaces\\IFileStorageService.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAAAAQAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-04T12:33:22.294Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
+              "Title": "AppDbContextModelSnapshot.cs",
+              "DocumentMoniker": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Migrations\\AppDbContextModelSnapshot.cs",
+              "RelativeDocumentMoniker": "FieldControl.Minio\\Migrations\\AppDbContextModelSnapshot.cs",
+              "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Migrations\\AppDbContextModelSnapshot.cs",
+              "RelativeToolTip": "FieldControl.Minio\\Migrations\\AppDbContextModelSnapshot.cs",
+              "ViewState": "AgIAAHAAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T12:46:56.263Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "20260504111427_InitialCreate.cs",
+              "DocumentMoniker": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Migrations\\20260504111427_InitialCreate.cs",
+              "RelativeDocumentMoniker": "FieldControl.Minio\\Migrations\\20260504111427_InitialCreate.cs",
+              "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Migrations\\20260504111427_InitialCreate.cs",
+              "RelativeToolTip": "FieldControl.Minio\\Migrations\\20260504111427_InitialCreate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T12:46:55.703Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Program.cs",
+              "RelativeDocumentMoniker": "FieldControl.Minio\\Program.cs",
+              "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Program.cs",
+              "RelativeToolTip": "FieldControl.Minio\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T09:00:40.679Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "FieldControl.Minio\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "FieldControl.Minio\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T08:58:05.3Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "FieldControl.Minio\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "FieldControl.Minio\\Controllers\\WeatherForecastController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T12:46:40.402Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "InspectionFile.cs",
+              "DocumentMoniker": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Entities\\InspectionFile.cs",
+              "RelativeDocumentMoniker": "FieldControl.Minio\\Entities\\InspectionFile.cs",
+              "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Entities\\InspectionFile.cs",
+              "RelativeToolTip": "FieldControl.Minio\\Entities\\InspectionFile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T06:53:59.44Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "InspectionStatus.cs",
               "DocumentMoniker": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Enums\\InspectionStatus.cs",
               "RelativeDocumentMoniker": "FieldControl.Minio\\Enums\\InspectionStatus.cs",
               "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Enums\\InspectionStatus.cs",
               "RelativeToolTip": "FieldControl.Minio\\Enums\\InspectionStatus.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAAwAkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-04T08:10:18.482Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "InspectionFileConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Configurations\\InspectionFileConfiguration.cs",
+              "RelativeDocumentMoniker": "FieldControl.Minio\\Configurations\\InspectionFileConfiguration.cs",
+              "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Configurations\\InspectionFileConfiguration.cs",
+              "RelativeToolTip": "FieldControl.Minio\\Configurations\\InspectionFileConfiguration.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAACcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T08:51:46.505Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "InspectionConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Configurations\\InspectionConfiguration.cs",
+              "RelativeDocumentMoniker": "FieldControl.Minio\\Configurations\\InspectionConfiguration.cs",
+              "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Configurations\\InspectionConfiguration.cs",
+              "RelativeToolTip": "FieldControl.Minio\\Configurations\\InspectionConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-04T11:12:03.866Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "FieldControl.Minio.csproj",
+              "DocumentMoniker": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\FieldControl.Minio.csproj",
+              "RelativeDocumentMoniker": "FieldControl.Minio\\FieldControl.Minio.csproj",
+              "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\FieldControl.Minio.csproj",
+              "RelativeToolTip": "FieldControl.Minio\\FieldControl.Minio.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-05-04T06:47:11.141Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\appsettings.json",
+              "RelativeDocumentMoniker": "FieldControl.Minio\\appsettings.json",
+              "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\appsettings.json",
+              "RelativeToolTip": "FieldControl.Minio\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-05-04T08:45:29.744Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
             },
             {
               "$type": "Bookmark",
@@ -128,114 +310,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "InspectionFileConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Configurations\\InspectionFileConfiguration.cs",
-              "RelativeDocumentMoniker": "FieldControl.Minio\\Configurations\\InspectionFileConfiguration.cs",
-              "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Configurations\\InspectionFileConfiguration.cs",
-              "RelativeToolTip": "FieldControl.Minio\\Configurations\\InspectionFileConfiguration.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAAACcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T08:51:46.505Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "InspectionFile.cs",
-              "DocumentMoniker": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Entities\\InspectionFile.cs",
-              "RelativeDocumentMoniker": "FieldControl.Minio\\Entities\\InspectionFile.cs",
-              "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Entities\\InspectionFile.cs",
-              "RelativeToolTip": "FieldControl.Minio\\Entities\\InspectionFile.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T06:53:59.44Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AppDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Data\\AppDbContext.cs",
-              "RelativeDocumentMoniker": "FieldControl.Minio\\Data\\AppDbContext.cs",
-              "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Data\\AppDbContext.cs",
-              "RelativeToolTip": "FieldControl.Minio\\Data\\AppDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T08:58:05.3Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "InspectionConfiguration.cs",
-              "DocumentMoniker": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Configurations\\InspectionConfiguration.cs",
-              "RelativeDocumentMoniker": "FieldControl.Minio\\Configurations\\InspectionConfiguration.cs",
-              "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Configurations\\InspectionConfiguration.cs",
-              "RelativeToolTip": "FieldControl.Minio\\Configurations\\InspectionConfiguration.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T11:12:03.866Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Inspection.cs",
-              "DocumentMoniker": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Entities\\Inspection.cs",
-              "RelativeDocumentMoniker": "FieldControl.Minio\\Entities\\Inspection.cs",
-              "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Entities\\Inspection.cs",
-              "RelativeToolTip": "FieldControl.Minio\\Entities\\Inspection.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T06:56:51.02Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Program.cs",
-              "RelativeDocumentMoniker": "FieldControl.Minio\\Program.cs",
-              "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\Program.cs",
-              "RelativeToolTip": "FieldControl.Minio\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T09:00:40.679Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "WeatherForecast.cs",
-              "DocumentMoniker": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\WeatherForecast.cs",
-              "RelativeDocumentMoniker": "FieldControl.Minio\\WeatherForecast.cs",
-              "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\WeatherForecast.cs",
-              "RelativeToolTip": "FieldControl.Minio\\WeatherForecast.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-04T09:00:38.011Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "FieldControl.Minio.csproj",
-              "DocumentMoniker": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\FieldControl.Minio.csproj",
-              "RelativeDocumentMoniker": "FieldControl.Minio\\FieldControl.Minio.csproj",
-              "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\FieldControl.Minio.csproj",
-              "RelativeToolTip": "FieldControl.Minio\\FieldControl.Minio.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-05-04T06:47:11.141Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\appsettings.json",
-              "RelativeDocumentMoniker": "FieldControl.Minio\\appsettings.json",
-              "ToolTip": "C:\\Users\\gulye\\Desktop\\2026 internship\\FieldControl.Minio\\FieldControl.Minio\\appsettings.json",
-              "RelativeToolTip": "FieldControl.Minio\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-05-04T08:45:29.744Z"
             }
           ]
         }

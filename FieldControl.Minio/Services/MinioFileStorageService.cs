@@ -13,48 +13,56 @@ namespace FieldControl.Minio.Services
         public MinioFileStorageService(IAmazonS3 s3Client, IConfiguration configuration)
         {
             _s3Client = s3Client;
-            _bucketName = configuration["MinioSettings:BucketName"];
+            _bucketName = configuration["MinioSettings:BucketName"]!;
         }
 
-        // 📤 UPLOAD
-        public async Task<string> UploadFileAsync(Stream fileStream, string fileName, string contentType)
+        public async Task<string> UploadFileAsync(
+            string bucketName,
+            string objectName,
+            byte[] data,
+            string contentType)
         {
-            var storedFileName = $"{Guid.NewGuid()}_{fileName}";
+            using var stream = new MemoryStream(data);
 
             var request = new PutObjectRequest
             {
-                BucketName = _bucketName,
-                Key = storedFileName,
-                InputStream = fileStream,
+                BucketName = bucketName,
+                Key = objectName,
+                InputStream = stream,
                 ContentType = contentType
             };
 
             await _s3Client.PutObjectAsync(request);
 
-            return storedFileName;
+            return objectName;
         }
 
-        // 📥 DOWNLOAD
-        public async Task<Stream> DownloadFileAsync(string fileName)
+        public async Task<byte[]> DownloadFileAsync(
+            string bucketName,
+            string objectName)
         {
             var request = new GetObjectRequest
             {
-                BucketName = _bucketName,
-                Key = fileName
+                BucketName = bucketName,
+                Key = objectName
             };
 
-            var response = await _s3Client.GetObjectAsync(request);
+            using var response = await _s3Client.GetObjectAsync(request);
+            using var memoryStream = new MemoryStream();
 
-            return response.ResponseStream;
+            await response.ResponseStream.CopyToAsync(memoryStream);
+
+            return memoryStream.ToArray();
         }
 
-        // 🗑 DELETE
-        public async Task DeleteFileAsync(string fileName)
+        public async Task DeleteFileAsync(
+            string bucketName,
+            string objectName)
         {
             var request = new DeleteObjectRequest
             {
-                BucketName = _bucketName,
-                Key = fileName
+                BucketName = bucketName,
+                Key = objectName
             };
 
             await _s3Client.DeleteObjectAsync(request);
