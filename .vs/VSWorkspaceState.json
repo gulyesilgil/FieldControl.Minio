@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\FieldControl.Minio",
+    "\\FieldControl.Minio\\Controllers",
+    "\\FieldControl.Minio\\Controllers\\InspectionFilesController",
+    "\\FieldControl.Minio\\Controllers\\InspectionsController",
+    "\\FieldControl.Minio\\Services"
+  ],
+  "SelectedNode": "\\FieldControl.Minio\\Controllers\\InspectionsController\\InspectionsController.cs.cs",
+  "PreviewInSolutionExplorer": false
+}
