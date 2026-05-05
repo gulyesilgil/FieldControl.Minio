@@ -4,8 +4,7 @@
     "\\FieldControl.Minio",
     "\\FieldControl.Minio\\Controllers",
     "\\FieldControl.Minio\\Controllers\\InspectionFilesController",
-    "\\FieldControl.Minio\\Controllers\\InspectionsController",
-    "\\FieldControl.Minio\\Services"
+    "\\FieldControl.Minio\\Controllers\\InspectionsController"
   ],
   "SelectedNode": "\\FieldControl.Minio\\Controllers\\InspectionsController\\InspectionsController.cs.cs",
   "PreviewInSolutionExplorer": false

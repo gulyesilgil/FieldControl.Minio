@@ -1,131 +1,92 @@
-﻿using FieldControl.Minio.Data;
-using FieldControl.Minio.Entities;
-using FieldControl.Minio.Interfaces;
+﻿using FieldControl.Minio.Services.InspectionAppService;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace FieldControl.Minio.Controllers
 {
     [ApiController]
-    [Route("api/inspections/{inspectionId}/files")]
+    [Route("api/inspections/{inspectionId:guid}/files")]
     public class InspectionFilesController : ControllerBase
     {
-        private readonly AppDbContext _context;
-        private readonly IFileStorageService _storageService;
-        private readonly string _bucketName = "fieldcontrol-bucket";
+        private readonly InspectionAppService _service;
 
-        public InspectionFilesController(
-            AppDbContext context,
-            IFileStorageService storageService)
+        public InspectionFilesController(InspectionAppService service)
         {
-            _context = context;
-            _storageService = storageService;
+            _service = service;
         }
 
-        // POST /api/inspections/{id}/files
+        // POST /api/inspections/{inspectionId}/files
         [HttpPost]
-        public async Task<IActionResult> Upload(Guid inspectionId, List<IFormFile> files)
+        public async Task<IActionResult> Upload(
+            [FromRoute] Guid inspectionId,
+            [FromForm] List<IFormFile> files)
         {
-            var inspection = await _context.Inspections.FindAsync(inspectionId);
+            if (files == null || files.Count == 0)
+                return BadRequest("No files uploaded");
 
-            if (inspection == null)
+            var success = await _service.UploadFilesAsync(inspectionId, files);
+
+            if (!success)
                 return NotFound("Inspection not found");
 
-            var uploadedFiles = new List<InspectionFile>();
-
-            foreach (var file in files)
-            {
-                if (file.Length == 0)
-                    continue;
-
-                // byte[]'e çevir
-                using var memoryStream = new MemoryStream();
-                await file.CopyToAsync(memoryStream);
-                var fileBytes = memoryStream.ToArray();
-
-                // StoredFileName (KEY)
-                var storedFileName = $"{Guid.NewGuid()}_{file.FileName}";
-
-                // MinIO'ya upload
-                await _storageService.UploadFileAsync(
-                    _bucketName,
-                    storedFileName,
-                    fileBytes,
-                    file.ContentType
-                );
-
-                // DB'ye kaydet
-                var inspectionFile = new InspectionFile
-                {
-                    Id = Guid.NewGuid(),
-                    InspectionId = inspectionId,
-                    FileName = file.FileName,
-                    StoredFileName = storedFileName,
-                    ContentType = file.ContentType,
-                    FileSize = file.Length,
-                    BucketName = _bucketName,
-                    CreatedAt = DateTime.UtcNow
-                };
-
-                uploadedFiles.Add(inspectionFile);
-            }
-
-            _context.InspectionFiles.AddRange(uploadedFiles);
-            await _context.SaveChangesAsync();
-
-            return Ok(uploadedFiles);
+            return Ok();
         }
 
-        // GET /api/inspections/{id}/files
+        // GET /api/inspections/{inspectionId}/files
         [HttpGet]
-        public async Task<IActionResult> GetFiles(Guid inspectionId)
+        public async Task<IActionResult> GetFiles([FromRoute] Guid inspectionId)
         {
-            var files = await _context.InspectionFiles
-                .Where(f => f.InspectionId == inspectionId)
-                .ToListAsync();
-
-            return Ok(files);
+            var result = await _service.GetFilesAsync(inspectionId);
+            return Ok(result);
         }
 
-        // GET /api/inspections/{id}/files/{fileId}/download
-        [HttpGet("{fileId}/download")]
-        public async Task<IActionResult> Download(Guid inspectionId, Guid fileId)
+        // GET /api/inspections/{inspectionId}/files/{fileId}/download
+        [HttpGet("{fileId:guid}/download")]
+        public async Task<IActionResult> Download(
+            [FromRoute] Guid inspectionId,
+            [FromRoute] Guid fileId)
         {
-            var file = await _context.InspectionFiles
-                .FirstOrDefaultAsync(f => f.Id == fileId && f.InspectionId == inspectionId);
+            var result = await _service.DownloadFileAsync(inspectionId, fileId);
 
-            if (file == null)
+            if (result == null)
                 return NotFound();
 
-            var fileBytes = await _storageService.DownloadFileAsync(
-                file.BucketName,
-                file.StoredFileName
+            return File(
+                result.Value.FileBytes,
+                result.Value.ContentType,
+                result.Value.FileName,
+                enableRangeProcessing: true
             );
-
-            return File(fileBytes, file.ContentType, file.FileName);
         }
 
-        // DELETE /api/inspections/{id}/files/{fileId}
-        [HttpDelete("{fileId}")]
-        public async Task<IActionResult> Delete(Guid inspectionId, Guid fileId)
+        // DELETE /api/inspections/{inspectionId}/files/{fileId}
+        [HttpDelete("{fileId:guid}")]
+        public async Task<IActionResult> Delete(
+            [FromRoute] Guid inspectionId,
+            [FromRoute] Guid fileId)
         {
-            var file = await _context.InspectionFiles
-                .FirstOrDefaultAsync(f => f.Id == fileId && f.InspectionId == inspectionId);
+            var success = await _service.DeleteFileAsync(inspectionId, fileId);
 
-            if (file == null)
+            if (!success)
                 return NotFound();
-
-            // MinIO'dan sil
-            await _storageService.DeleteFileAsync(
-                file.BucketName,
-                file.StoredFileName
-            );
-
-            // DB'den sil
-            _context.InspectionFiles.Remove(file);
-            await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        // GET /api/inspections/{inspectionId}/files/download-all
+        [HttpGet("download-all")]
+        public async Task<IActionResult> DownloadAll([FromRoute] Guid inspectionId)
+        {
+            var result = await _service.ExportFilesAsZipAsync(inspectionId);
+
+            if (result == null)
+                return NotFound("No files found");
+
+            return File(
+                result.Value.ZipBytes,
+                "application/zip",
+                result.Value.FileName,
+                enableRangeProcessing: true
+            );
         }
     }
 }

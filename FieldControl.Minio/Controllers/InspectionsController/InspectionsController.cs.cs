@@ -1,7 +1,6 @@
-﻿using FieldControl.Minio.Data;
-using FieldControl.Minio.Entities;
+﻿using FieldControl.Minio.Entities;
+using FieldControl.Minio.Services.InspectionAppService;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace FieldControl.Minio.Controllers
 {
@@ -9,71 +8,49 @@ namespace FieldControl.Minio.Controllers
     [Route("api/[controller]")]
     public class InspectionsController : ControllerBase
     {
-        private readonly AppDbContext _context;
-        private readonly IFileStorageService _storageService;
+        private readonly InspectionAppService _service;
 
-        public InspectionsController(AppDbContext context, IFileStorageService storageService)
+        public InspectionsController(InspectionAppService service)
         {
-            _context = context;
-            _storageService = storageService;
-
+            _service = service;
         }
 
         // POST /api/inspections
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Inspection inspection)
         {
-            inspection.Id = Guid.NewGuid();
-            inspection.CreatedAt = DateTime.UtcNow;
-            inspection.UpdatedAt = DateTime.UtcNow;
-
-            _context.Inspections.Add(inspection);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetById), new { id = inspection.Id }, inspection);
+            var result = await _service.CreateAsync(inspection);
+            return Ok(result);
         }
 
         // GET /api/inspections
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var inspections = await _context.Inspections
-                .Include(i => i.InspectionFiles)
-                .ToListAsync();
-
-            return Ok(inspections);
+            var result = await _service.GetAllAsync();
+            return Ok(result);
         }
 
         // GET /api/inspections/{id}
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var inspection = await _context.Inspections
-                .Include(i => i.InspectionFiles)
-                .FirstOrDefaultAsync(i => i.Id == id);
+            var result = await _service.GetByIdAsync(id);
 
-            if (inspection == null)
+            if (result == null)
                 return NotFound();
 
-            return Ok(inspection);
+            return Ok(result);
         }
 
         // PUT /api/inspections/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] Inspection updated)
+        public async Task<IActionResult> Update(Guid id, [FromBody] Inspection inspection)
         {
-            var inspection = await _context.Inspections.FindAsync(id);
+            var success = await _service.UpdateAsync(id, inspection);
 
-            if (inspection == null)
+            if (!success)
                 return NotFound();
-
-            inspection.ProductName = updated.ProductName;
-            inspection.Description = updated.Description;
-            inspection.InspectorName = updated.InspectorName;
-            inspection.Status = updated.Status;
-            inspection.UpdatedAt = DateTime.UtcNow;
-
-            await _context.SaveChangesAsync();
 
             return NoContent();
         }
@@ -82,26 +59,10 @@ namespace FieldControl.Minio.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var inspection = await _context.Inspections
-                .Include(i => i.InspectionFiles)
-                .FirstOrDefaultAsync(i => i.Id == id);
+            var success = await _service.DeleteAsync(id);
 
-            if (inspection == null)
+            if (!success)
                 return NotFound();
-
-            foreach (var file in inspection.InspectionFiles)
-            {
-                await _storageService.DeleteFileAsync(
-                    file.BucketName,
-                    file.StoredFileName
-                );
-            }
-
-            _context.InspectionFiles.RemoveRange(inspection.InspectionFiles);
-
-            _context.Inspections.Remove(inspection);
-
-            await _context.SaveChangesAsync();
 
             return NoContent();
         }
