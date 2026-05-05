@@ -10,16 +10,19 @@ namespace FieldControl.Minio.Services.InspectionAppService
     {
         private readonly AppDbContext _context;
         private readonly IFileStorageService _storageService;
-        private readonly string _bucketName = "fieldcontrol-bucket";
+        private readonly string _bucketName;
 
         public InspectionAppService(
             AppDbContext context,
-            IFileStorageService storageService)
+            IFileStorageService storageService,
+            IConfiguration config)
         {
             _context = context;
             _storageService = storageService;
+            _bucketName = config["MinioSettings:BucketName"]!;
         }
-       
+
+        // INSPECTION
 
         public async Task<Inspection> CreateAsync(Inspection inspection)
         {
@@ -50,9 +53,7 @@ namespace FieldControl.Minio.Services.InspectionAppService
         public async Task<bool> UpdateAsync(Guid id, Inspection updated)
         {
             var inspection = await _context.Inspections.FindAsync(id);
-
-            if (inspection == null)
-                return false;
+            if (inspection == null) return false;
 
             inspection.ProductName = updated.ProductName;
             inspection.Description = updated.Description;
@@ -70,16 +71,11 @@ namespace FieldControl.Minio.Services.InspectionAppService
                 .Include(i => i.InspectionFiles)
                 .FirstOrDefaultAsync(i => i.Id == id);
 
-            if (inspection == null)
-                return false;
+            if (inspection == null) return false;
 
-            // MinIO cleanup
             foreach (var file in inspection.InspectionFiles)
             {
-                await _storageService.DeleteFileAsync(
-                    file.BucketName,
-                    file.StoredFileName
-                );
+                await _storageService.DeleteFileAsync(file.BucketName, file.StoredFileName);
             }
 
             _context.InspectionFiles.RemoveRange(inspection.InspectionFiles);
@@ -89,54 +85,61 @@ namespace FieldControl.Minio.Services.InspectionAppService
             return true;
         }
 
-        // FILE OPERATIONS
+        
+        // FILE
 
         public async Task<bool> UploadFilesAsync(Guid inspectionId, List<IFormFile> files)
         {
             var inspection = await _context.Inspections.FindAsync(inspectionId);
+            if (inspection == null) return false;
 
-            if (inspection == null)
-                return false;
+            using var transaction = await _context.Database.BeginTransactionAsync();
 
-            var fileEntities = new List<InspectionFile>();
-
-            foreach (var file in files)
+            try
             {
-                if (file.Length == 0)
-                    continue;
+                var entities = new List<InspectionFile>();
 
-                using var ms = new MemoryStream();
-                await file.CopyToAsync(ms);
-                var bytes = ms.ToArray();
-
-                var storedFileName = $"{Guid.NewGuid()}_{file.FileName}";
-
-                await _storageService.UploadFileAsync(
-                    _bucketName,
-                    storedFileName,
-                    bytes,
-                    file.ContentType
-                );
-
-                var entity = new InspectionFile
+                foreach (var file in files)
                 {
-                    Id = Guid.NewGuid(),
-                    InspectionId = inspectionId,
-                    FileName = file.FileName,
-                    StoredFileName = storedFileName,
-                    ContentType = file.ContentType,
-                    FileSize = file.Length,
-                    BucketName = _bucketName,
-                    CreatedAt = DateTime.UtcNow
-                };
+                    if (file.Length == 0)
+                        continue;
 
-                fileEntities.Add(entity);
+                    using var ms = new MemoryStream();
+                    await file.CopyToAsync(ms);
+
+                    var storedFileName = $"{Guid.NewGuid()}_{file.FileName}";
+
+                    await _storageService.UploadFileAsync(
+                        _bucketName,
+                        storedFileName,
+                        ms.ToArray(),
+                        file.ContentType
+                    );
+
+                    entities.Add(new InspectionFile
+                    {
+                        Id = Guid.NewGuid(),
+                        InspectionId = inspectionId,
+                        FileName = file.FileName,
+                        StoredFileName = storedFileName,
+                        ContentType = file.ContentType,
+                        FileSize = file.Length,
+                        BucketName = _bucketName,
+                        CreatedAt = DateTime.UtcNow
+                    });
+                }
+
+                _context.InspectionFiles.AddRange(entities);
+                await _context.SaveChangesAsync();
+
+                await transaction.CommitAsync();
+                return true;
             }
-
-            _context.InspectionFiles.AddRange(fileEntities);
-            await _context.SaveChangesAsync();
-
-            return true;
+            catch
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
         }
 
         public async Task<List<InspectionFile>> GetFilesAsync(Guid inspectionId)
@@ -151,13 +154,9 @@ namespace FieldControl.Minio.Services.InspectionAppService
             var file = await _context.InspectionFiles
                 .FirstOrDefaultAsync(f => f.Id == fileId && f.InspectionId == inspectionId);
 
-            if (file == null)
-                return null;
+            if (file == null) return null;
 
-            var bytes = await _storageService.DownloadFileAsync(
-                file.BucketName,
-                file.StoredFileName
-            );
+            var bytes = await _storageService.DownloadFileAsync(file.BucketName, file.StoredFileName);
 
             return (bytes, file.ContentType, file.FileName);
         }
@@ -167,13 +166,9 @@ namespace FieldControl.Minio.Services.InspectionAppService
             var file = await _context.InspectionFiles
                 .FirstOrDefaultAsync(f => f.Id == fileId && f.InspectionId == inspectionId);
 
-            if (file == null)
-                return false;
+            if (file == null) return false;
 
-            await _storageService.DeleteFileAsync(
-                file.BucketName,
-                file.StoredFileName
-            );
+            await _storageService.DeleteFileAsync(file.BucketName, file.StoredFileName);
 
             _context.InspectionFiles.Remove(file);
             await _context.SaveChangesAsync();
@@ -187,8 +182,7 @@ namespace FieldControl.Minio.Services.InspectionAppService
                 .Where(f => f.InspectionId == inspectionId)
                 .ToListAsync();
 
-            if (files.Count == 0)
-                return null;
+            if (files.Count == 0) return null;
 
             using var zipStream = new MemoryStream();
 
@@ -196,24 +190,18 @@ namespace FieldControl.Minio.Services.InspectionAppService
             {
                 foreach (var file in files)
                 {
-                    var fileBytes = await _storageService.DownloadFileAsync(
-                        file.BucketName,
-                        file.StoredFileName
-                    );
+                    var bytes = await _storageService.DownloadFileAsync(file.BucketName, file.StoredFileName);
 
-                    var entry = archive.CreateEntry(file.FileName, CompressionLevel.Optimal);
+                    var safeName = $"{Guid.NewGuid()}_{file.FileName}";
+
+                    var entry = archive.CreateEntry(safeName, CompressionLevel.Optimal);
 
                     using var entryStream = entry.Open();
-                    await entryStream.WriteAsync(fileBytes, 0, fileBytes.Length);
+                    await entryStream.WriteAsync(bytes);
                 }
             }
 
-            zipStream.Position = 0;
-
-            var epochMillis = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-            var zipFileName = $"ExportData_{epochMillis}.zip";
-
-            return (zipStream.ToArray(), zipFileName);
+            return (zipStream.ToArray(), $"inspection_{inspectionId}.zip");
         }
     }
 }

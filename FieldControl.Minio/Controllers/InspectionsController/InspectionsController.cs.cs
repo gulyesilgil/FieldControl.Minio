@@ -27,8 +27,7 @@ namespace FieldControl.Minio.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var result = await _service.GetAllAsync();
-            return Ok(result);
+            return Ok(await _service.GetAllAsync());
         }
 
         // GET /api/inspections/{id}

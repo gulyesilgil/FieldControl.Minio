@@ -26,13 +26,18 @@ builder.Services.AddSingleton<IAmazonS3>(sp =>
     var config = sp.GetRequiredService<IConfiguration>();
     var minio = config.GetSection("MinioSettings");
 
+    var accessKey = minio["AccessKey"]!;
+    var secretKey = minio["SecretKey"]!;
+    var endpoint = minio["Endpoint"]!;
+
     return new AmazonS3Client(
-        minio["AccessKey"],
-        minio["SecretKey"],
+        accessKey,
+        secretKey,
         new AmazonS3Config
         {
-            ServiceURL = minio["Endpoint"],
-            ForcePathStyle = true // ⚠️ MinIO için zorunlu
+            ServiceURL = endpoint,
+            ForcePathStyle = true,
+            UseHttp = true // ⚠️ MinIO için önemli
         });
 });
 
@@ -40,9 +45,10 @@ builder.Services.AddSingleton<IAmazonS3>(sp =>
 builder.Services.AddScoped<IFileStorageService, MinioFileStorageService>();
 builder.Services.AddScoped<InspectionAppService>();
 
+ 
+// PIPELINE
 var app = builder.Build();
 
-// MIDDLEWARE PIPELINE
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -50,6 +56,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 app.UseAuthorization();
 
 app.MapControllers();

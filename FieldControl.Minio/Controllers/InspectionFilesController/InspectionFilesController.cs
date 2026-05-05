@@ -23,9 +23,9 @@ namespace FieldControl.Minio.Controllers
             if (files == null || files.Count == 0)
                 return BadRequest("No files uploaded");
 
-            var success = await _service.UploadFilesAsync(inspectionId, files);
+            var result = await _service.UploadFilesAsync(inspectionId, files);
 
-            if (!success)
+            if (!result)
                 return NotFound("Inspection not found");
 
             return Ok();
@@ -36,6 +36,10 @@ namespace FieldControl.Minio.Controllers
         public async Task<IActionResult> GetFiles([FromRoute] Guid inspectionId)
         {
             var result = await _service.GetFilesAsync(inspectionId);
+
+            if (result == null || result.Count == 0)
+                return NotFound("No files found");
+
             return Ok(result);
         }
 
@@ -64,9 +68,9 @@ namespace FieldControl.Minio.Controllers
             [FromRoute] Guid inspectionId,
             [FromRoute] Guid fileId)
         {
-            var success = await _service.DeleteFileAsync(inspectionId, fileId);
+            var result = await _service.DeleteFileAsync(inspectionId, fileId);
 
-            if (!success)
+            if (!result)
                 return NotFound();
 
             return NoContent();
