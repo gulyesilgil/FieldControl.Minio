@@ -3,7 +3,7 @@ using Amazon.S3.Model;
 using FieldControl.Minio.Interfaces;
 using Microsoft.Extensions.Configuration;
 
-namespace FieldControl.Minio.Services
+namespace FieldControl.Minio.Services.Storage
 {
     public class MinioFileStorageService : IFileStorageService
     {

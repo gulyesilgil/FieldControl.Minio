@@ -19,10 +19,7 @@ namespace FieldControl.Minio.Services.InspectionAppService
             _context = context;
             _storageService = storageService;
         }
-
-        // 
-        // INSPECTION CRUD
-        // 
+       
 
         public async Task<Inspection> CreateAsync(Inspection inspection)
         {
@@ -67,7 +64,6 @@ namespace FieldControl.Minio.Services.InspectionAppService
             return true;
         }
 
-        // 🔥 DELETE + MINIO CLEANUP
         public async Task<bool> DeleteAsync(Guid id)
         {
             var inspection = await _context.Inspections
@@ -93,9 +89,7 @@ namespace FieldControl.Minio.Services.InspectionAppService
             return true;
         }
 
-        // =======================
         // FILE OPERATIONS
-        // =======================
 
         public async Task<bool> UploadFilesAsync(Guid inspectionId, List<IFormFile> files)
         {
@@ -186,10 +180,6 @@ namespace FieldControl.Minio.Services.InspectionAppService
 
             return true;
         }
-
-        // =======================
-        // 🔥 ZIP EXPORT (BONUS)
-        // =======================
 
         public async Task<(byte[] ZipBytes, string FileName)?> ExportFilesAsZipAsync(Guid inspectionId)
         {
