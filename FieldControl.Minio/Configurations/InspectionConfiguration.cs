@@ -20,7 +20,8 @@ namespace FieldControl.Minio.Configurations
                 .IsRequired();
 
             builder.Property(x => x.InspectorName)
-                .IsRequired();
+                .IsRequired()
+                .HasMaxLength(150);
 
             builder.Property(x => x.Status)
                 .IsRequired();

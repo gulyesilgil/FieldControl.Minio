@@ -18,7 +18,7 @@ namespace FieldControl.Minio.Configurations
 
             builder.Property(x => x.StoredFileName)
                 .IsRequired()
-                .HasMaxLength(255);
+                .HasMaxLength(500);
 
             builder.Property(x => x.ContentType)
                 .IsRequired()
