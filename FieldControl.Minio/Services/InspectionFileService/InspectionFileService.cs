@@ -5,7 +5,7 @@ using FieldControl.Minio.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.IO.Compression;
 
-namespace FieldControl.Minio.Services.File
+namespace FieldControl.Minio.Services.InspectionFileService
 {
     public class InspectionFileService
     {
@@ -23,6 +23,7 @@ namespace FieldControl.Minio.Services.File
             _bucketName = config["MinioSettings:BucketName"]!;
         }
 
+        // UPLOAD
         public async Task<List<InspectionFileDto>> UploadFilesAsync(Guid inspectionId, List<IFormFile> files)
         {
             var inspection = await _context.Inspections.FindAsync(inspectionId);
@@ -67,6 +68,7 @@ namespace FieldControl.Minio.Services.File
             return entities.Select(MapToDto).ToList();
         }
 
+        // GET FILES
         public async Task<List<InspectionFileDto>> GetFilesAsync(Guid inspectionId)
         {
             var files = await _context.InspectionFiles
@@ -76,6 +78,7 @@ namespace FieldControl.Minio.Services.File
             return files.Select(MapToDto).ToList();
         }
 
+        // DOWNLOAD
         public async Task<(byte[] FileBytes, string ContentType, string FileName)?> DownloadFileAsync(Guid inspectionId, Guid fileId)
         {
             var file = await _context.InspectionFiles
@@ -91,6 +94,7 @@ namespace FieldControl.Minio.Services.File
             return (bytes, file.ContentType, file.FileName);
         }
 
+        // DELETE FILE
         public async Task<bool> DeleteFileAsync(Guid inspectionId, Guid fileId)
         {
             var file = await _context.InspectionFiles
@@ -109,6 +113,7 @@ namespace FieldControl.Minio.Services.File
             return true;
         }
 
+        // EXPORT ZIP
         public async Task<(byte[] ZipBytes, string FileName)?> ExportFilesAsZipAsync(Guid inspectionId)
         {
             var files = await _context.InspectionFiles
@@ -138,6 +143,7 @@ namespace FieldControl.Minio.Services.File
             return (zipStream.ToArray(), $"inspection_{inspectionId}.zip");
         }
 
+        // 🔁 MAPPING
         private InspectionFileDto MapToDto(InspectionFile file)
         {
             return new InspectionFileDto

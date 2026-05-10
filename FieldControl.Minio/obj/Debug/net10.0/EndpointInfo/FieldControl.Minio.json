@@ -159,7 +159,7 @@
         }
       }
     },
-    "/api/Inspections": {
+    "/api/inspections": {
       "post": {
         "tags": [
           "Inspections"
@@ -168,17 +168,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Inspection"
+                "$ref": "#/components/schemas/CreateInspectionDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Inspection"
+                "$ref": "#/components/schemas/CreateInspectionDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Inspection"
+                "$ref": "#/components/schemas/CreateInspectionDto"
               }
             }
           }
@@ -200,7 +200,7 @@
         }
       }
     },
-    "/api/Inspections/{id}": {
+    "/api/inspections/{id}": {
       "get": {
         "tags": [
           "Inspections"
@@ -241,17 +241,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Inspection"
+                "$ref": "#/components/schemas/CreateInspectionDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Inspection"
+                "$ref": "#/components/schemas/CreateInspectionDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Inspection"
+                "$ref": "#/components/schemas/CreateInspectionDto"
               }
             }
           }
@@ -276,6 +276,60 @@
               "format": "uuid"
             }
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/inspections/{id}/status": {
+      "patch": {
+        "tags": [
+          "Inspections"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateInspectionStatusDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateInspectionStatusDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateInspectionStatusDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/inspections/statuses": {
+      "get": {
+        "tags": [
+          "Inspections"
         ],
         "responses": {
           "200": {
@@ -326,95 +380,45 @@
   },
   "components": {
     "schemas": {
-      "Inspection": {
+      "CreateInspectionDto": {
+        "required": [
+          "description",
+          "inspectorName",
+          "productName",
+          "status"
+        ],
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
           "productName": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
           },
           "description": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "inspectorName": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 150,
+            "minLength": 1,
+            "type": "string"
           },
           "status": {
-            "$ref": "#/components/schemas/InspectionStatus"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "inspectionFiles": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InspectionFile"
-            },
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false
       },
-      "InspectionFile": {
+      "UpdateInspectionStatusDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "inspectionId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "fileName": {
+          "status": {
             "type": "string",
             "nullable": true
-          },
-          "storedFileName": {
-            "type": "string",
-            "nullable": true
-          },
-          "contentType": {
-            "type": "string",
-            "nullable": true
-          },
-          "fileSize": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "bucketName": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "inspection": {
-            "$ref": "#/components/schemas/Inspection"
           }
         },
         "additionalProperties": false
-      },
-      "InspectionStatus": {
-        "enum": [
-          0,
-          1,
-          2
-        ],
-        "type": "integer",
-        "format": "int32"
       },
       "WeatherForecast": {
         "type": "object",

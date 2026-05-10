@@ -1,37 +1,38 @@
-﻿using FieldControl.Minio.Entities;
-using FieldControl.Minio.Services.InspectionAppService;
+﻿using FieldControl.Minio.DTOs.Inspection;
+using FieldControl.Minio.Services.Inspection;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FieldControl.Minio.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/inspections")]
     public class InspectionsController : ControllerBase
     {
-        private readonly InspectionAppService _service;
+        private readonly InspectionService _service;
 
-        public InspectionsController(InspectionAppService service)
+        public InspectionsController(InspectionService service)
         {
             _service = service;
         }
 
-        // POST /api/inspections
+        // CREATE
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Inspection inspection)
+        public async Task<IActionResult> Create(CreateInspectionDto dto)
         {
-            var result = await _service.CreateAsync(inspection);
+            var result = await _service.CreateAsync(dto);
             return Ok(result);
         }
 
-        // GET /api/inspections
+        // GET ALL
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await _service.GetAllAsync());
+            var result = await _service.GetAllAsync();
+            return Ok(result);
         }
 
-        // GET /api/inspections/{id}
-        [HttpGet("{id}")]
+        // GET BY ID
+        [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetById(Guid id)
         {
             var result = await _service.GetByIdAsync(id);
@@ -42,11 +43,11 @@ namespace FieldControl.Minio.Controllers
             return Ok(result);
         }
 
-        // PUT /api/inspections/{id}
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] Inspection inspection)
+        // UPDATE (FULL)
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> Update(Guid id, CreateInspectionDto dto)
         {
-            var success = await _service.UpdateAsync(id, inspection);
+            var success = await _service.UpdateAsync(id, dto);
 
             if (!success)
                 return NotFound();
@@ -54,8 +55,30 @@ namespace FieldControl.Minio.Controllers
             return NoContent();
         }
 
-        // DELETE /api/inspections/{id}
-        [HttpDelete("{id}")]
+        // PATCH STATUS
+        [HttpPatch("{id:guid}/status")]
+        public async Task<IActionResult> UpdateStatus(
+            Guid id,
+            UpdateInspectionStatusDto dto)
+        {
+            var success = await _service.UpdateStatusAsync(id, dto.Status);
+
+            if (!success)
+                return NotFound();
+
+            return NoContent();
+        }
+
+        // GET ALL STATUSES
+        [HttpGet("statuses")]
+        public IActionResult GetStatuses()
+        {
+            var result = _service.GetAllStatuses();
+            return Ok(result);
+        }
+
+        // DELETE
+        [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var success = await _service.DeleteAsync(id);

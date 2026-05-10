@@ -1,9 +1,11 @@
 using Amazon.S3;
 using FieldControl.Minio.Data;
 using FieldControl.Minio.Interfaces;
-using FieldControl.Minio.Services.InspectionAppService;
+
 using FieldControl.Minio.Services.Storage;
 using Microsoft.EntityFrameworkCore;
+using FieldControl.Minio.Services.InspectionFileService;
+using FieldControl.Minio.Services.Inspection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,15 +39,16 @@ builder.Services.AddSingleton<IAmazonS3>(sp =>
         {
             ServiceURL = endpoint,
             ForcePathStyle = true,
-            UseHttp = true // ⚠️ MinIO için önemli
+            UseHttp = true //  MinIO için 
         });
 });
 
 // SERVICES (DI)
 builder.Services.AddScoped<IFileStorageService, MinioFileStorageService>();
-builder.Services.AddScoped<InspectionAppService>();
+builder.Services.AddScoped<InspectionFileService>();
+builder.Services.AddScoped<InspectionService>();
 
- 
+
 // PIPELINE
 var app = builder.Build();
 

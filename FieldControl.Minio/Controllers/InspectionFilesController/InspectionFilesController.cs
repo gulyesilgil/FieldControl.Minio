@@ -1,5 +1,5 @@
-﻿using FieldControl.Minio.Services.InspectionAppService;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using FieldControl.Minio.Services.InspectionFileService;
 
 namespace FieldControl.Minio.Controllers
 {
@@ -7,17 +7,17 @@ namespace FieldControl.Minio.Controllers
     [Route("api/inspections/{inspectionId:guid}/files")]
     public class InspectionFilesController : ControllerBase
     {
-        private readonly InspectionAppService _service;
+        private readonly InspectionFileService _service;
 
-        public InspectionFilesController(InspectionAppService service)
+        public InspectionFilesController(InspectionFileService service)
         {
             _service = service;
         }
 
-        // POST /api/inspections/{inspectionId}/files
+        // UPLOAD
         [HttpPost]
         public async Task<IActionResult> Upload(
-            [FromRoute] Guid inspectionId,
+            Guid inspectionId,
             [FromForm] List<IFormFile> files)
         {
             if (files == null || files.Count == 0)
@@ -25,29 +25,20 @@ namespace FieldControl.Minio.Controllers
 
             var result = await _service.UploadFilesAsync(inspectionId, files);
 
-            if (!result)
-                return NotFound("Inspection not found");
-
-            return Ok();
-        }
-
-        // GET /api/inspections/{inspectionId}/files
-        [HttpGet]
-        public async Task<IActionResult> GetFiles([FromRoute] Guid inspectionId)
-        {
-            var result = await _service.GetFilesAsync(inspectionId);
-
-            if (result == null || result.Count == 0)
-                return NotFound("No files found");
-
             return Ok(result);
         }
 
-        // GET /api/inspections/{inspectionId}/files/{fileId}/download
+        // GET FILES
+        [HttpGet]
+        public async Task<IActionResult> GetFiles(Guid inspectionId)
+        {
+            var result = await _service.GetFilesAsync(inspectionId);
+            return Ok(result);
+        }
+
+        // DOWNLOAD
         [HttpGet("{fileId:guid}/download")]
-        public async Task<IActionResult> Download(
-            [FromRoute] Guid inspectionId,
-            [FromRoute] Guid fileId)
+        public async Task<IActionResult> Download(Guid inspectionId, Guid fileId)
         {
             var result = await _service.DownloadFileAsync(inspectionId, fileId);
 
@@ -62,23 +53,21 @@ namespace FieldControl.Minio.Controllers
             );
         }
 
-        // DELETE /api/inspections/{inspectionId}/files/{fileId}
+        // DELETE FILE
         [HttpDelete("{fileId:guid}")]
-        public async Task<IActionResult> Delete(
-            [FromRoute] Guid inspectionId,
-            [FromRoute] Guid fileId)
+        public async Task<IActionResult> Delete(Guid inspectionId, Guid fileId)
         {
-            var result = await _service.DeleteFileAsync(inspectionId, fileId);
+            var success = await _service.DeleteFileAsync(inspectionId, fileId);
 
-            if (!result)
+            if (!success)
                 return NotFound();
 
             return NoContent();
         }
 
-        // GET /api/inspections/{inspectionId}/files/download-all
+        // DOWNLOAD ALL (ZIP)
         [HttpGet("download-all")]
-        public async Task<IActionResult> DownloadAll([FromRoute] Guid inspectionId)
+        public async Task<IActionResult> DownloadAll(Guid inspectionId)
         {
             var result = await _service.ExportFilesAsZipAsync(inspectionId);
 
