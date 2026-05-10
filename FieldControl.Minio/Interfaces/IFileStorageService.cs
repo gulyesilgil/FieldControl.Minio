@@ -7,11 +7,6 @@ namespace FieldControl.Minio.Interfaces
         /// <summary>
         /// Dosyayı Object Storage'a yükler
         /// </summary>
-        /// <param name="bucketName">Bucket adı</param>
-        /// <param name="objectName">StoredFileName (key)</param>
-        /// <param name="data">Dosya byte verisi</param>
-        /// <param name="contentType">Dosya tipi</param>
-        /// <returns>StoredFileName (key)</returns>
         Task<string> UploadFileAsync(
             string bucketName,
             string objectName,
@@ -31,5 +26,10 @@ namespace FieldControl.Minio.Interfaces
         Task DeleteFileAsync(
             string bucketName,
             string objectName);
+
+        /// <summary>
+        /// Bucket içindeki tüm dosyaları listeler (StoredFileName döner)
+        /// </summary>
+        Task<List<string>> ListFilesAsync(string bucketName);
     }
 }

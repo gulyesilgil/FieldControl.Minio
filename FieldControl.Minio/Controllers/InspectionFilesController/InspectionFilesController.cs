@@ -27,6 +27,14 @@ namespace FieldControl.Minio.Controllers
 
             return Ok(result);
         }
+        //GET ALL FILES
+
+        [HttpGet("/api/files")]
+        public async Task<IActionResult> GetAllFiles()
+        {
+            var result = await _service.GetAllFilesAsync();
+            return Ok(result);
+        }
 
         // GET FILES
         [HttpGet]

@@ -1,7 +1,6 @@
 ﻿using Amazon.S3;
 using Amazon.S3.Model;
 using FieldControl.Minio.Interfaces;
-using Microsoft.Extensions.Configuration;
 
 namespace FieldControl.Minio.Services.Storage
 {
@@ -66,6 +65,36 @@ namespace FieldControl.Minio.Services.Storage
             };
 
             await _s3Client.DeleteObjectAsync(request);
+        }
+
+        public async Task<List<string>> ListFilesAsync(string bucketName)
+        {
+            var result = new List<string>();
+
+            string? continuationToken = null;
+
+            do
+            {
+                var request = new ListObjectsV2Request
+                {
+                    BucketName = bucketName,
+                    ContinuationToken = continuationToken
+                };
+
+                var response = await _s3Client.ListObjectsV2Async(request);
+
+                foreach (var obj in response.S3Objects)
+                {
+                    result.Add(obj.Key); //  StoredFileName
+                }
+
+                continuationToken = response.IsTruncated == true
+                    ? response.NextContinuationToken
+                     : null;
+
+            } while (continuationToken != null);
+
+            return result;
         }
     }
 }

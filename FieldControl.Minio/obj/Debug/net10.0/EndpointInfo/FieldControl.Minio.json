@@ -5,6 +5,18 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/files/download-bucket": {
+      "get": {
+        "tags": [
+          "Files"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/inspections/{inspectionId}/files": {
       "post": {
         "tags": [
@@ -64,6 +76,18 @@
               "format": "uuid"
             }
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/files": {
+      "get": {
+        "tags": [
+          "InspectionFiles"
         ],
         "responses": {
           "200": {
@@ -446,6 +470,9 @@
     }
   },
   "tags": [
+    {
+      "name": "Files"
+    },
     {
       "name": "InspectionFiles"
     },

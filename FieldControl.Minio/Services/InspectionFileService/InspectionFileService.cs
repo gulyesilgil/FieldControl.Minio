@@ -1,5 +1,6 @@
 ﻿using FieldControl.Minio.Data;
 using FieldControl.Minio.DTOs.File;
+using FieldControl.Minio.DTOs.InspectionFile;
 using FieldControl.Minio.Entities;
 using FieldControl.Minio.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -67,7 +68,22 @@ namespace FieldControl.Minio.Services.InspectionFileService
 
             return entities.Select(MapToDto).ToList();
         }
+        //GET ALL FILES
 
+        public async Task<List<AllInspectionFileDto>> GetAllFilesAsync()
+        {
+            var files = await _context.InspectionFiles.ToListAsync();
+
+            return files.Select(f => new AllInspectionFileDto
+            {
+                Id = f.Id,
+                InspectionId = f.InspectionId,
+                FileName = f.FileName,
+                FileSize = f.FileSize,
+                ContentType = f.ContentType,
+                CreatedAt = f.CreatedAt
+            }).ToList();
+        }
         // GET FILES
         public async Task<List<InspectionFileDto>> GetFilesAsync(Guid inspectionId)
         {

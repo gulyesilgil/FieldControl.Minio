@@ -1,5 +1,25 @@
 [
   {
+    "ContainingType": "FieldControl.Minio.Controllers.InspectionFilesController",
+    "Method": "GetAllFiles",
+    "RelativePath": "api/files",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FieldControl.Minio.Controllers.FilesController",
+    "Method": "DownloadBucket",
+    "RelativePath": "api/files/download-bucket",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FieldControl.Minio.Controllers.InspectionsController",
     "Method": "Create",
     "RelativePath": "api/inspections",
