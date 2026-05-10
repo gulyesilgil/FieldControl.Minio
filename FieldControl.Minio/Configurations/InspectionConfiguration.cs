@@ -36,7 +36,7 @@ namespace FieldControl.Minio.Configurations
             builder.HasMany(x => x.InspectionFiles)
                 .WithOne(x => x.Inspection)
                 .HasForeignKey(x => x.InspectionId)
-                .OnDelete(DeleteBehavior.Cascade); // Silme kuralını da ekledik
+                .OnDelete(DeleteBehavior.Cascade); 
         }
     }
 }

@@ -25,7 +25,6 @@
   <ItemGroup>
     <Folder Include="Controllers\InspectionsController\" />
     <Folder Include="Controllers\InspectionFilesController\" />
-    <Folder Include="DTOs\InspectionFile\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Data\" />
   </ItemGroup>
