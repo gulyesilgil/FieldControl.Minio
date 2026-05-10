@@ -11,12 +11,18 @@
   },
   {
     "ContainingType": "FieldControl.Minio.Controllers.FilesController",
-    "Method": "DownloadBucket",
-    "RelativePath": "api/files/download-bucket",
+    "Method": "Cleanup",
+    "RelativePath": "api/files/cleanup",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "dryRun",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -218,6 +224,16 @@
     "ContainingType": "FieldControl.Minio.Controllers.InspectionsController",
     "Method": "GetStatuses",
     "RelativePath": "api/inspections/statuses",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FieldControl.Minio.Controllers.ReportsController.ReportsController",
+    "Method": "Export",
+    "RelativePath": "api/reports/inspection-excel",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

@@ -1,4 +1,4 @@
-﻿using FieldControl.Minio.Services.BucketService;
+﻿using FieldControl.Minio.Services.StorageCleanup;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FieldControl.Minio.Controllers
@@ -7,26 +7,25 @@ namespace FieldControl.Minio.Controllers
     [Route("api/files")]
     public class FilesController : ControllerBase
     {
-        private readonly BucketService _bucketService;
+        private readonly StorageCleanupService _cleanupService;
 
-        public FilesController(BucketService bucketService)
+        public FilesController(StorageCleanupService cleanupService)
         {
-            _bucketService = bucketService;
+            _cleanupService = cleanupService;
         }
 
-        [HttpGet("download-bucket")]
-        public async Task<IActionResult> DownloadBucket()
+        //  DRY RUN
+        [HttpGet("cleanup")]
+        public async Task<IActionResult> Cleanup([FromQuery] bool dryRun = true)
         {
-            var result = await _bucketService.DownloadEntireBucketAsync();
+            var result = await _cleanupService.CleanupAsync(dryRun);
 
-            if (result == null)
-                return NotFound("Bucket is empty");
-
-            return File(
-                result.Value.ZipBytes,
-                "application/zip",
-                result.Value.FileName
-            );
+            return Ok(new
+            {
+                dryRun,
+                orphanCount = result.Count,
+                orphanFiles = result
+            });
         }
     }
 }

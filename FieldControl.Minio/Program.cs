@@ -4,7 +4,9 @@ using FieldControl.Minio.Interfaces;
 using FieldControl.Minio.Services.BucketService;
 using FieldControl.Minio.Services.Inspection;
 using FieldControl.Minio.Services.InspectionFileService;
+using FieldControl.Minio.Services.Report;
 using FieldControl.Minio.Services.Storage;
+using FieldControl.Minio.Services.StorageCleanup;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -48,6 +50,8 @@ builder.Services.AddScoped<IFileStorageService, MinioFileStorageService>();
 builder.Services.AddScoped<InspectionFileService>();
 builder.Services.AddScoped<InspectionService>();
 builder.Services.AddScoped<BucketService>();
+builder.Services.AddScoped<ReportService>();
+builder.Services.AddScoped<StorageCleanupService>();
 
 
 // PIPELINE

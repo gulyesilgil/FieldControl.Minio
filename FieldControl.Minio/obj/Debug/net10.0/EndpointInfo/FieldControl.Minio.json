@@ -5,10 +5,20 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/files/download-bucket": {
+    "/api/files/cleanup": {
       "get": {
         "tags": [
           "Files"
+        ],
+        "parameters": [
+          {
+            "name": "dryRun",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -362,6 +372,18 @@
         }
       }
     },
+    "/api/reports/inspection-excel": {
+      "get": {
+        "tags": [
+          "Reports"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/WeatherForecast": {
       "get": {
         "tags": [
@@ -478,6 +500,9 @@
     },
     {
       "name": "Inspections"
+    },
+    {
+      "name": "Reports"
     },
     {
       "name": "WeatherForecast"

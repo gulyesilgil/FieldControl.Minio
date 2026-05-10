@@ -128,3 +128,11 @@ C:\Users\gulye\Desktop\2026 internship\FieldControl.Minio\FieldControl.Minio\bin
 C:\Users\gulye\Desktop\2026 internship\FieldControl.Minio\FieldControl.Minio\bin\Debug\net10.0\AWSSDK.Core.dll
 C:\Users\gulye\Desktop\2026 internship\FieldControl.Minio\FieldControl.Minio\bin\Debug\net10.0\AWSSDK.S3.dll
 C:\Users\gulye\Desktop\2026 internship\FieldControl.Minio\FieldControl.Minio\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
+C:\Users\gulye\Desktop\2026 internship\FieldControl.Minio\FieldControl.Minio\bin\Debug\net10.0\ClosedXML.dll
+C:\Users\gulye\Desktop\2026 internship\FieldControl.Minio\FieldControl.Minio\bin\Debug\net10.0\ClosedXML.Parser.dll
+C:\Users\gulye\Desktop\2026 internship\FieldControl.Minio\FieldControl.Minio\bin\Debug\net10.0\DocumentFormat.OpenXml.dll
+C:\Users\gulye\Desktop\2026 internship\FieldControl.Minio\FieldControl.Minio\bin\Debug\net10.0\DocumentFormat.OpenXml.Framework.dll
+C:\Users\gulye\Desktop\2026 internship\FieldControl.Minio\FieldControl.Minio\bin\Debug\net10.0\ExcelNumberFormat.dll
+C:\Users\gulye\Desktop\2026 internship\FieldControl.Minio\FieldControl.Minio\bin\Debug\net10.0\RBush.dll
+C:\Users\gulye\Desktop\2026 internship\FieldControl.Minio\FieldControl.Minio\bin\Debug\net10.0\SixLabors.Fonts.dll
+C:\Users\gulye\Desktop\2026 internship\FieldControl.Minio\FieldControl.Minio\bin\Debug\net10.0\System.IO.Packaging.dll
