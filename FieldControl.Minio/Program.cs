@@ -8,44 +8,56 @@ using FieldControl.Minio.Services.Report;
 using FieldControl.Minio.Services.Storage;
 using FieldControl.Minio.Services.StorageCleanup;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http.Features;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.AllowSynchronousIO = true;
+});
+
+//  KESTREL LIMIT
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.Limits.MaxRequestBodySize = null;
+});
+
+//  MULTIPART LIMIT
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = long.MaxValue;
+});
 
 // CONTROLLERS & SWAGGER
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// DATABASE (PostgreSQL)
+// DATABASE
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString)
            .UseSnakeCaseNamingConvention());
 
-// MINIO (S3 CLIENT)
-
+// MINIO
 builder.Services.AddSingleton<IAmazonS3>(sp =>
 {
     var config = sp.GetRequiredService<IConfiguration>();
     var minio = config.GetSection("MinioSettings");
 
-    var accessKey = minio["AccessKey"]!;
-    var secretKey = minio["SecretKey"]!;
-    var endpoint = minio["Endpoint"]!;
-
     return new AmazonS3Client(
-        accessKey,
-        secretKey,
+        minio["AccessKey"]!,
+        minio["SecretKey"]!,
         new AmazonS3Config
         {
-            ServiceURL = endpoint,
+            ServiceURL = minio["Endpoint"]!,
             ForcePathStyle = true,
-            UseHttp = true //  MinIO için 
+            UseHttp = true
         });
 });
 
-// SERVICES (DI)
+// SERVICES
 builder.Services.AddScoped<IFileStorageService, MinioFileStorageService>();
 builder.Services.AddScoped<InspectionFileService>();
 builder.Services.AddScoped<InspectionService>();
@@ -53,8 +65,6 @@ builder.Services.AddScoped<BucketService>();
 builder.Services.AddScoped<ReportService>();
 builder.Services.AddScoped<StorageCleanupService>();
 
-
-// PIPELINE
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -64,9 +74,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

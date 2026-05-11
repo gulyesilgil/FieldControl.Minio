@@ -15,20 +15,22 @@ namespace FieldControl.Minio.Services.Storage
             _bucketName = configuration["MinioSettings:BucketName"]!;
         }
 
+        // 🔥 STREAM UPLOAD
         public async Task<string> UploadFileAsync(
             string bucketName,
             string objectName,
-            byte[] data,
+            Stream stream,
             string contentType)
         {
-            using var stream = new MemoryStream(data);
+            stream.Position = 0;
 
             var request = new PutObjectRequest
             {
                 BucketName = bucketName,
                 Key = objectName,
                 InputStream = stream,
-                ContentType = contentType
+                ContentType = contentType,
+                AutoCloseStream = false
             };
 
             await _s3Client.PutObjectAsync(request);
@@ -36,35 +38,21 @@ namespace FieldControl.Minio.Services.Storage
             return objectName;
         }
 
-        public async Task<byte[]> DownloadFileAsync(
+        // 🔥 STREAM DOWNLOAD
+        public async Task<Stream> DownloadFileAsync(
             string bucketName,
             string objectName)
         {
-            var request = new GetObjectRequest
-            {
-                BucketName = bucketName,
-                Key = objectName
-            };
+            var response = await _s3Client.GetObjectAsync(bucketName, objectName);
 
-            using var response = await _s3Client.GetObjectAsync(request);
-            using var memoryStream = new MemoryStream();
-
-            await response.ResponseStream.CopyToAsync(memoryStream);
-
-            return memoryStream.ToArray();
+            return response.ResponseStream; // 💥 RAM YOK
         }
 
         public async Task DeleteFileAsync(
             string bucketName,
             string objectName)
         {
-            var request = new DeleteObjectRequest
-            {
-                BucketName = bucketName,
-                Key = objectName
-            };
-
-            await _s3Client.DeleteObjectAsync(request);
+            await _s3Client.DeleteObjectAsync(bucketName, objectName);
         }
 
         public async Task<List<string>> ListFilesAsync(string bucketName)
@@ -75,22 +63,17 @@ namespace FieldControl.Minio.Services.Storage
 
             do
             {
-                var request = new ListObjectsV2Request
+                var response = await _s3Client.ListObjectsV2Async(new ListObjectsV2Request
                 {
                     BucketName = bucketName,
                     ContinuationToken = continuationToken
-                };
+                });
 
-                var response = await _s3Client.ListObjectsV2Async(request);
-
-                foreach (var obj in response.S3Objects)
-                {
-                    result.Add(obj.Key); //  StoredFileName
-                }
+                result.AddRange(response.S3Objects.Select(x => x.Key));
 
                 continuationToken = response.IsTruncated == true
-                    ? response.NextContinuationToken
-                     : null;
+                         ? response.NextContinuationToken
+                        : null;
 
             } while (continuationToken != null);
 

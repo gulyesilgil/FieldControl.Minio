@@ -1,5 +1,5 @@
 ﻿using FieldControl.Minio.Data;
-using FieldControl.Minio.DTOs.File;
+using FieldControl.Minio.DTOs.InspectionFile;
 using FieldControl.Minio.DTOs.InspectionFile;
 using FieldControl.Minio.Entities;
 using FieldControl.Minio.Interfaces;
@@ -24,7 +24,7 @@ namespace FieldControl.Minio.Services.InspectionFileService
             _bucketName = config["MinioSettings:BucketName"]!;
         }
 
-        // UPLOAD
+        //  UPLOAD (STREAM)
         public async Task<List<InspectionFileDto>> UploadFilesAsync(Guid inspectionId, List<IFormFile> files)
         {
             var inspection = await _context.Inspections.FindAsync(inspectionId);
@@ -36,15 +36,14 @@ namespace FieldControl.Minio.Services.InspectionFileService
             {
                 if (file.Length == 0) continue;
 
-                using var ms = new MemoryStream();
-                await file.CopyToAsync(ms);
-
                 var storedFileName = $"{Guid.NewGuid()}_{file.FileName}";
+
+                using var stream = file.OpenReadStream();
 
                 await _storageService.UploadFileAsync(
                     _bucketName,
                     storedFileName,
-                    ms.ToArray(),
+                    stream,
                     file.ContentType
                 );
 
@@ -68,23 +67,15 @@ namespace FieldControl.Minio.Services.InspectionFileService
 
             return entities.Select(MapToDto).ToList();
         }
-        //GET ALL FILES
 
-        public async Task<List<AllInspectionFileDto>> GetAllFilesAsync()
+        //  GET ALL
+        public async Task<List<InspectionFileDto>> GetAllFilesAsync()
         {
             var files = await _context.InspectionFiles.ToListAsync();
-
-            return files.Select(f => new AllInspectionFileDto
-            {
-                Id = f.Id,
-                InspectionId = f.InspectionId,
-                FileName = f.FileName,
-                FileSize = f.FileSize,
-                ContentType = f.ContentType,
-                CreatedAt = f.CreatedAt
-            }).ToList();
+            return files.Select(MapToDto).ToList();
         }
-        // GET FILES
+
+        //  GET BY INSPECTION
         public async Task<List<InspectionFileDto>> GetFilesAsync(Guid inspectionId)
         {
             var files = await _context.InspectionFiles
@@ -94,23 +85,24 @@ namespace FieldControl.Minio.Services.InspectionFileService
             return files.Select(MapToDto).ToList();
         }
 
-        // DOWNLOAD
-        public async Task<(byte[] FileBytes, string ContentType, string FileName)?> DownloadFileAsync(Guid inspectionId, Guid fileId)
+        // 🔥 DOWNLOAD (STREAM)
+        public async Task<(Stream Stream, string ContentType, string FileName)?>
+            DownloadFileAsync(Guid inspectionId, Guid fileId)
         {
             var file = await _context.InspectionFiles
-                .FirstOrDefaultAsync(f => f.Id == fileId && f.InspectionId == inspectionId);
+                .FirstOrDefaultAsync(x => x.Id == fileId && x.InspectionId == inspectionId);
 
             if (file == null) return null;
 
-            var bytes = await _storageService.DownloadFileAsync(
+            var stream = await _storageService.DownloadFileAsync(
                 file.BucketName,
                 file.StoredFileName
             );
 
-            return (bytes, file.ContentType, file.FileName);
+            return (stream, file.ContentType, file.FileName);
         }
 
-        // DELETE FILE
+        //  DELETE
         public async Task<bool> DeleteFileAsync(Guid inspectionId, Guid fileId)
         {
             var file = await _context.InspectionFiles
@@ -129,7 +121,7 @@ namespace FieldControl.Minio.Services.InspectionFileService
             return true;
         }
 
-        // EXPORT ZIP
+        //  ZIP (STREAM → ZIP → RAM FINAL)
         public async Task<(byte[] ZipBytes, string FileName)?> ExportFilesAsZipAsync(Guid inspectionId)
         {
             var files = await _context.InspectionFiles
@@ -144,27 +136,36 @@ namespace FieldControl.Minio.Services.InspectionFileService
             {
                 foreach (var file in files)
                 {
-                    var bytes = await _storageService.DownloadFileAsync(
-                        file.BucketName,
-                        file.StoredFileName
-                    );
+                    try
+                    {
+                        using var stream = await _storageService.DownloadFileAsync(
+                            file.BucketName,
+                            file.StoredFileName
+                        );
 
-                    var entry = archive.CreateEntry(file.FileName, CompressionLevel.Optimal);
+                        var entry = archive.CreateEntry(file.FileName, CompressionLevel.Fastest);
 
-                    using var entryStream = entry.Open();
-                    await entryStream.WriteAsync(bytes);
+                        using var entryStream = entry.Open();
+
+                        await stream.CopyToAsync(entryStream);
+                    }
+                    catch
+                    {
+                        continue;
+                    }
                 }
             }
 
             return (zipStream.ToArray(), $"inspection_{inspectionId}.zip");
         }
 
-        // 🔁 MAPPING
+        //  MAPPING (TEK NOKTA)
         private InspectionFileDto MapToDto(InspectionFile file)
         {
             return new InspectionFileDto
             {
                 Id = file.Id,
+                InspectionId = file.InspectionId,
                 FileName = file.FileName,
                 FileSize = file.FileSize,
                 ContentType = file.ContentType,

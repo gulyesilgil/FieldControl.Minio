@@ -27,6 +27,18 @@
         }
       }
     },
+    "/api/files/download-bucket": {
+      "get": {
+        "tags": [
+          "Files"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/inspections/{inspectionId}/files": {
       "post": {
         "tags": [

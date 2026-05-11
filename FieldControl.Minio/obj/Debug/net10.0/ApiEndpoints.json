@@ -26,6 +26,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "FieldControl.Minio.Controllers.FilesController",
+    "Method": "DownloadBucket",
+    "RelativePath": "api/files/download-bucket",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "FieldControl.Minio.Controllers.InspectionsController",
     "Method": "Create",
     "RelativePath": "api/inspections",

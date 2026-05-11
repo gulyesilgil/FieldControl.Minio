@@ -14,7 +14,9 @@ namespace FieldControl.Minio.Controllers
             _service = service;
         }
 
-        // UPLOAD
+        // 🔥 UPLOAD (LIMIT FIX BURADA)
+        [RequestSizeLimit(long.MaxValue)]
+        [RequestFormLimits(MultipartBodyLengthLimit = long.MaxValue)]
         [HttpPost]
         public async Task<IActionResult> Upload(
             Guid inspectionId,
@@ -27,8 +29,8 @@ namespace FieldControl.Minio.Controllers
 
             return Ok(result);
         }
-        //GET ALL FILES
 
+        // GET ALL FILES
         [HttpGet("/api/files")]
         public async Task<IActionResult> GetAllFiles()
         {
@@ -44,7 +46,7 @@ namespace FieldControl.Minio.Controllers
             return Ok(result);
         }
 
-        // DOWNLOAD
+        // DOWNLOAD SINGLE (STREAM ✔)
         [HttpGet("{fileId:guid}/download")]
         public async Task<IActionResult> Download(Guid inspectionId, Guid fileId)
         {
@@ -54,14 +56,14 @@ namespace FieldControl.Minio.Controllers
                 return NotFound();
 
             return File(
-                result.Value.FileBytes,
+                result.Value.Stream,
                 result.Value.ContentType,
                 result.Value.FileName,
                 enableRangeProcessing: true
             );
         }
 
-        // DELETE FILE
+        // DELETE
         [HttpDelete("{fileId:guid}")]
         public async Task<IActionResult> Delete(Guid inspectionId, Guid fileId)
         {

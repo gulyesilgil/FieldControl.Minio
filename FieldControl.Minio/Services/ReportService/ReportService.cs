@@ -31,7 +31,7 @@ namespace FieldControl.Minio.Services.Report
             using var workbook = new XLWorkbook();
             var ws = workbook.Worksheets.Add("Report");
 
-            //  HEADER
+            // HEADER
             ws.Cell(1, 1).Value = "InspectionId";
             ws.Cell(1, 2).Value = "ProductName";
             ws.Cell(1, 3).Value = "Description";
@@ -41,7 +41,6 @@ namespace FieldControl.Minio.Services.Report
             ws.Cell(1, 7).Value = "FileName";
             ws.Cell(1, 8).Value = "Image";
 
-            //  column width sabit
             ws.Column(8).Width = 20;
 
             int row = 2;
@@ -59,27 +58,23 @@ namespace FieldControl.Minio.Services.Report
                     ws.Cell(row, 6).Value = file.Id.ToString();
                     ws.Cell(row, 7).Value = file.FileName;
 
-                    //  row height
                     ws.Row(row).Height = 110;
 
-                    //  IMAGE
+                    // 🔥 IMAGE (STREAM BASED)
                     try
                     {
                         if (!string.IsNullOrEmpty(file.StoredFileName) &&
                             file.ContentType.StartsWith("image"))
                         {
-                            var bytes = await _storageService.DownloadFileAsync(
+                            using var stream = await _storageService.DownloadFileAsync(
                                 _bucketName,
                                 file.StoredFileName
                             );
 
-                            using var stream = new MemoryStream(bytes);
-
                             var picture = ws.AddPicture(stream)
-                                .MoveTo(ws.Cell(row, 8)) //  hücreye bağla
+                                .MoveTo(ws.Cell(row, 8))
                                 .WithPlacement(XLPicturePlacement.MoveAndSize);
 
-                            //  sabit boyut (row içinde kalır)
                             picture.Width = 90;
                             picture.Height = 90;
                         }
@@ -93,7 +88,6 @@ namespace FieldControl.Minio.Services.Report
                 }
             }
 
-            //  sadece text columnları auto size
             ws.Columns(1, 7).AdjustToContents();
 
             using var ms = new MemoryStream();
